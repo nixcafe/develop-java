@@ -5,12 +5,16 @@
   system,
   ...
 }:
+let
+  jdk = pkgs.jdk23;
+  maven = pkgs.maven.override { jdk_headless = jdk; };
+  gradle = pkgs.gradle.override { java = jdk; };
+in
 mkShell {
-  packages = with pkgs; [
-    # nix stuff
-    nixfmt-rfc-style
-    deadnix
-    statix
+  packages = [
+    jdk
+    maven
+    gradle
   ];
 
   inherit (inputs.self.checks.${system}.pre-commit-check) shellHook;
