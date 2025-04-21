@@ -15,6 +15,7 @@ mkShell {
     jdk
     maven
     gradle
+    # ant
   ];
 
   inherit (inputs.self.checks.${system}.pre-commit-check) shellHook;
