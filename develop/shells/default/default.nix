@@ -6,7 +6,7 @@
   ...
 }:
 let
-  jdk = pkgs.jdk23;
+  jdk = pkgs.graalvmPackages.graalvm-ce; # pkgs.jdk23;
   maven = pkgs.maven.override { jdk_headless = jdk; };
   gradle = pkgs.gradle.override { java = jdk; };
 in
